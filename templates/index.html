@@ -1,0 +1,8 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} <home> Welcome to My book Manager System </home> {% endblock %}</h1>
+    <h1><a href="{{ url_for('showbook')}}">List book</a></h1>
+    <h1><a href="{{ url_for('showauthor')}}">List Author</a></h1>
+{% endblock %}

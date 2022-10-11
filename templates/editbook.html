@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% autoescape false %}
+{% for book in books %}
+                {% if book.bookid == id%}
+                <h1> edit : {{ book.title }}</h1>
+                {% endif %}
+{% endfor %}
+<form method="post">
+    <div>
+        <label for="authorid">New author name</label>
+        <select name="authorid" class="form-group">
+            {% for author in authors %}
+            <option value = "{{ author.authorid }}" </option>
+                <a href="#">
+                    <h2>{{ author.name }}</h2>
+                </a>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="title">New Title</label>
+            <input type="text" name="title"
+                   placeholder="Post title" class="form-control"
+                   value="{{ request.form['title'] }}"></input>
+        </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+<hr>
+<hr>
+{% for book in books %}
+    {% if book.bookid == id %}
+    <h1> Do you want to delete :{{ book.title}}  </h1>
+    <form action="{{ url_for('deletebook', id=book.bookid) }}" method="POST">
+    <input type="submit" value="Yes delete"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Are you want to delete this book?')">
+    </form>
+    {% endif %}
+{% endfor %}
+{% endautoescape %}
+{% endblock %}
+Footer

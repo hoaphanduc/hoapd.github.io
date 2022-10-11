@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} <home> Book list </home> {% endblock %}</h1>
+    {% for author in authors %}
+            <h1><li>Author name : {{ author.name }}</li></h1>
+            {% for book in books %}
+                {% if book.authorid == author.authorid %}
+                    <li>Author book : {{ book.title }}</li>
+                {% endif%}
+            {% endfor %}
+            <li>Author priority : {{ author.priority }}</li>
+            <br>
+            <a href="{{ url_for('editbook',id= author.authorid) }}">Edit Book</a>
+        <span class="badge badge-primary">{{ author['created'] }}</span>
+        <hr>
+    {% endfor %}
+    <a href="{{ url_for('createbook')}}">Create Book</a>
+{% endblock %}
+Footer
